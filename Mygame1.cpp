@@ -11,19 +11,19 @@
 
 using namespace std;
 
-// Структура для хранения рекордов
+// Г‘ГІГ°ГіГЄГІГіГ°Г  Г¤Г«Гї ГµГ°Г Г­ГҐГ­ГЁГї Г°ГҐГЄГ®Г°Г¤Г®Гў
 struct HighScore {
     string playerName;
     int score;
 };
 
-// Глобальные переменные
+// ГѓГ«Г®ГЎГ Г«ГјГ­Г»ГҐ ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ
 vector<HighScore> highScores;
 string currentPlayer = "Player";
 int screenWidth = 400;
 int screenHeight = 600;
 
-// Прототипы функций
+// ГЏГ°Г®ГІГ®ГІГЁГЇГ» ГґГіГ­ГЄГ¶ГЁГ©
 void SaveHighScores();
 void LoadHighScores();
 void ShowMainMenu();
@@ -33,7 +33,7 @@ void PlayGame();
 void DrawButton(const char* text, int y, bool hovered);
 void AddHighScore(int score);
 
-// Загрузка рекордов при запуске
+// Г‡Г ГЈГ°ГіГ§ГЄГ  Г°ГҐГЄГ®Г°Г¤Г®Гў ГЇГ°ГЁ Г§Г ГЇГіГ±ГЄГҐ
 void LoadHighScores() {
     highScores.clear();
 
@@ -57,7 +57,7 @@ void LoadHighScores() {
                     highScores.push_back(hs);
                 }
                 catch (...) {
-                    // Игнорируем некорректные строки
+                    // Г€ГЈГ­Г®Г°ГЁГ°ГіГҐГ¬ Г­ГҐГЄГ®Г°Г°ГҐГЄГІГ­Г»ГҐ Г±ГІГ°Г®ГЄГЁ
                 }
             }
         }
@@ -70,7 +70,7 @@ void LoadHighScores() {
         });
 }
 
-// Сохранение рекордов
+// Г‘Г®ГµГ°Г Г­ГҐГ­ГЁГҐ Г°ГҐГЄГ®Г°Г¤Г®Гў
 void SaveHighScores() {
     ofstream file("highscores.txt", ios::binary);
     if (file.is_open()) {
@@ -83,7 +83,7 @@ void SaveHighScores() {
     }
 }
 
-// Добавление нового рекорда
+// Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ Г­Г®ГўГ®ГЈГ® Г°ГҐГЄГ®Г°Г¤Г 
 void AddHighScore(int score) {
     bool found = false;
     for (auto& hs : highScores) {
@@ -111,7 +111,7 @@ void AddHighScore(int score) {
     SaveHighScores();
 }
 
-// Отрисовка кнопки
+// ГЋГІГ°ГЁГ±Г®ГўГЄГ  ГЄГ­Г®ГЇГЄГЁ
 void DrawButton(const char* text, int y, bool hovered) {
     Rectangle button = { screenWidth / 2 - 100, y, 200, 40 };
     Color buttonColor = hovered ? BLUE : DARKBLUE;
@@ -124,7 +124,7 @@ void DrawButton(const char* text, int y, bool hovered) {
     DrawText(text, screenWidth / 2 - textWidth / 2, y + 10, 20, textColor);
 }
 
-// Главное меню
+// ГѓГ«Г ГўГ­Г®ГҐ Г¬ГҐГ­Гѕ
 void ShowMainMenu() {
     int selectedButton = 0;
     const int buttonCount = 4;
@@ -171,7 +171,7 @@ void ShowMainMenu() {
     }
 }
 
-// Меню смены игрока
+// ГЊГҐГ­Гѕ Г±Г¬ГҐГ­Г» ГЁГЈГ°Г®ГЄГ 
 void ShowPlayerMenu() {
     string playerName = currentPlayer;
     bool textEditMode = true;
@@ -222,7 +222,7 @@ void ShowPlayerMenu() {
     }
 }
 
-// Таблица рекордов
+// Г’Г ГЎГ«ГЁГ¶Г  Г°ГҐГЄГ®Г°Г¤Г®Гў
 void ShowHighScores() {
     while (!WindowShouldClose()) {
         if (IsKeyPressed(KEY_ESCAPE) || IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
@@ -256,12 +256,12 @@ void ShowHighScores() {
     }
 }
 
-// Игровая логика - узкие платформы и большие расстояния
+// Г€ГЈГ°Г®ГўГ Гї Г«Г®ГЈГЁГЄГ  - ГіГ§ГЄГЁГҐ ГЇГ«Г ГІГґГ®Г°Г¬Г» ГЁ ГЎГ®Г«ГјГёГЁГҐ Г°Г Г±Г±ГІГ®ГїГ­ГЁГї
 void PlayGame() {
     struct Platform {
         float x, y;
-        float width = 45;  // ?? УЗКИЕ ПЛАТФОРМЫ (было 70)
-        float height = 12; // ?? ТОНЬШЕ (было 15)
+        float width = 45;  // ?? Г“Г‡ГЉГ€Г… ГЏГ‹ГЂГ’Г”ГЋГђГЊГ› (ГЎГ»Г«Г® 70)
+        float height = 12; // ?? Г’ГЋГЌГњГГ… (ГЎГ»Г«Г® 15)
         Color color = GREEN;
     };
 
@@ -288,9 +288,9 @@ void PlayGame() {
     player.x = screenWidth / 2 - player.width / 2;
     player.y = startPlatform.y - player.height;
 
-    // ?? УВЕЛИЧЕННЫЕ РАССТОЯНИЯ МЕЖДУ ПЛАТФОРМАМИ
-    const float MAX_JUMP_HEIGHT = 150.0f;   // Увеличил высоту прыжка
-    const float PLATFORM_SPACING = 110.0f;  // ?? БОЛЬШЕ РАССТОЯНИЕ (было 90)
+    // ?? Г“Г‚Г…Г‹Г€Г—Г…ГЌГЌГ›Г… ГђГЂГ‘Г‘Г’ГЋГџГЌГ€Гџ ГЊГ…Г†Г„Г“ ГЏГ‹ГЂГ’Г”ГЋГђГЊГЂГЊГ€
+    const float MAX_JUMP_HEIGHT = 150.0f;   // Г“ГўГҐГ«ГЁГ·ГЁГ« ГўГ»Г±Г®ГІГі ГЇГ°Г»Г¦ГЄГ 
+    const float PLATFORM_SPACING = 110.0f;  // ?? ГЃГЋГ‹ГњГГ… ГђГЂГ‘Г‘Г’ГЋГџГЌГ€Г… (ГЎГ»Г«Г® 90)
     const int VISIBLE_PLATFORMS = 8;
 
     float currentY = 450;
@@ -298,15 +298,15 @@ void PlayGame() {
     for (int i = 0; i < VISIBLE_PLATFORMS; i++) {
         Platform platform;
 
-        // ?? АДАПТИРОВАННЫЕ ПОЗИЦИИ ДЛЯ УЗКИХ ПЛАТФОРМ
+        // ?? ГЂГ„ГЂГЏГ’Г€ГђГЋГ‚ГЂГЌГЌГ›Г… ГЏГЋГ‡Г€Г–Г€Г€ Г„Г‹Гџ Г“Г‡ГЉГ€Г• ГЏГ‹ГЂГ’Г”ГЋГђГЊ
         if (i % 3 == 0) {
-            platform.x = 50; // Левая сторона
+            platform.x = 50; // Г‹ГҐГўГ Гї Г±ГІГ®Г°Г®Г­Г 
         }
         else if (i % 3 == 1) {
-            platform.x = screenWidth / 2 - platform.width / 2; // Центр
+            platform.x = screenWidth / 2 - platform.width / 2; // Г–ГҐГ­ГІГ°
         }
         else {
-            platform.x = screenWidth - 50 - platform.width; // Правая сторона
+            platform.x = screenWidth - 50 - platform.width; // ГЏГ°Г ГўГ Гї Г±ГІГ®Г°Г®Г­Г 
         }
 
         platform.y = currentY;
@@ -320,14 +320,14 @@ void PlayGame() {
     bool gameOver = false;
     float cameraOffset = 0;
 
-    // ?? СБАЛАНСИРОВАННАЯ ФИЗИКА ДЛЯ БОЛЬШИХ РАССТОЯНИЙ
-    const float MAX_JUMP_FORCE = -14.0f;    // Увеличил силу прыжка
+    // ?? Г‘ГЃГЂГ‹ГЂГЌГ‘Г€ГђГЋГ‚ГЂГЌГЌГЂГџ Г”Г€Г‡Г€ГЉГЂ Г„Г‹Гџ ГЃГЋГ‹ГњГГ€Г• ГђГЂГ‘Г‘Г’ГЋГџГЌГ€Г‰
+    const float MAX_JUMP_FORCE = -14.0f;    // Г“ГўГҐГ«ГЁГ·ГЁГ« Г±ГЁГ«Гі ГЇГ°Г»Г¦ГЄГ 
     const float MIN_JUMP_FORCE = -7.0f;
     const float GRAVITY = 0.5f;
-    const float MAX_FALL_SPEED = 18.0f;     // Увеличил скорость падения
-    const float MOVE_SPEED = 6.0f;          // Увеличил скорость движения
+    const float MAX_FALL_SPEED = 18.0f;     // Г“ГўГҐГ«ГЁГ·ГЁГ« Г±ГЄГ®Г°Г®Г±ГІГј ГЇГ Г¤ГҐГ­ГЁГї
+    const float MOVE_SPEED = 6.0f;          // Г“ГўГҐГ«ГЁГ·ГЁГ« Г±ГЄГ®Г°Г®Г±ГІГј Г¤ГўГЁГ¦ГҐГ­ГЁГї
 
-    // Переменные для прыжка
+    // ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ Г¤Г«Гї ГЇГ°Г»Г¦ГЄГ 
     float jumpPressDuration = 0.0f;
     const float MAX_PRESS_DURATION = 0.2f;
     bool isPressingJump = false;
@@ -341,7 +341,7 @@ void PlayGame() {
             player.x += MOVE_SPEED;
         }
 
-        // СИСТЕМА ПРЫЖКА
+        // Г‘Г€Г‘Г’Г…ГЊГЂ ГЏГђГ›Г†ГЉГЂ
         if (player.onGround) {
             if (IsKeyPressed(KEY_SPACE) || IsKeyPressed(KEY_UP) || IsKeyPressed(KEY_W)) {
                 isPressingJump = true;
@@ -432,7 +432,7 @@ void PlayGame() {
             score += (int)delta;
         }
 
-        // Генерация новых платформ с узкими настройками
+        // ГѓГҐГ­ГҐГ°Г Г¶ГЁГї Г­Г®ГўГ»Гµ ГЇГ«Г ГІГґГ®Г°Г¬ Г± ГіГ§ГЄГЁГ¬ГЁ Г­Г Г±ГІГ°Г®Г©ГЄГ Г¬ГЁ
         if (platforms.back().y > -100) {
             Platform newPlatform;
 
@@ -441,14 +441,14 @@ void PlayGame() {
             static int patternIndex = 0;
             patternIndex = (patternIndex + 1) % 6;
 
-            // ?? АДАПТИРОВАННЫЕ ПОЗИЦИИ ДЛЯ УЗКИХ ПЛАТФОРМ
+            // ?? ГЂГ„ГЂГЏГ’Г€ГђГЋГ‚ГЂГЌГЌГ›Г… ГЏГЋГ‡Г€Г–Г€Г€ Г„Г‹Гџ Г“Г‡ГЉГ€Г• ГЏГ‹ГЂГ’Г”ГЋГђГЊ
             switch (patternIndex) {
-            case 0: newPlatform.x = 40; break;                       // Лево
-            case 1: newPlatform.x = screenWidth / 2 - 22; break;      // Центр
-            case 2: newPlatform.x = screenWidth - 40 - newPlatform.width; break; // Право
-            case 3: newPlatform.x = 80; break;                       // Лево-центр
-            case 4: newPlatform.x = screenWidth - 120 - newPlatform.width; break; // Право-центр
-            case 5: newPlatform.x = screenWidth / 2 - 22; break;      // Центр
+            case 0: newPlatform.x = 40; break;                       // Г‹ГҐГўГ®
+            case 1: newPlatform.x = screenWidth / 2 - 22; break;      // Г–ГҐГ­ГІГ°
+            case 2: newPlatform.x = screenWidth - 40 - newPlatform.width; break; // ГЏГ°Г ГўГ®
+            case 3: newPlatform.x = 80; break;                       // Г‹ГҐГўГ®-Г¶ГҐГ­ГІГ°
+            case 4: newPlatform.x = screenWidth - 120 - newPlatform.width; break; // ГЏГ°Г ГўГ®-Г¶ГҐГ­ГІГ°
+            case 5: newPlatform.x = screenWidth / 2 - 22; break;      // Г–ГҐГ­ГІГ°
             }
 
             newPlatform.y = lastPlatformY - PLATFORM_SPACING;
@@ -461,7 +461,7 @@ void PlayGame() {
             platforms.erase(platforms.begin());
         }
 
-        // Проверка смерти
+        // ГЏГ°Г®ГўГҐГ°ГЄГ  Г±Г¬ГҐГ°ГІГЁ
         if (player.y > 600) {
             if (player.velocity > 0) {
                 gameOver = true;
@@ -477,10 +477,10 @@ void PlayGame() {
         BeginDrawing();
         ClearBackground(BLUE);
 
-        // ?? ОТРИСОВКА УЗКИХ ПЛАТФОРМ С ЯРКИМИ КОНТУРАМИ
+        // ?? ГЋГ’ГђГ€Г‘ГЋГ‚ГЉГЂ Г“Г‡ГЉГ€Г• ГЏГ‹ГЂГ’Г”ГЋГђГЊ Г‘ ГџГђГЉГ€ГЊГ€ ГЉГЋГЌГ’Г“ГђГЂГЊГ€
         for (auto& platform : platforms) {
             DrawRectangle(platform.x, platform.y, platform.width, platform.height, platform.color);
-            // ЯРКИЕ КОНТУРЫ ДЛЯ ЛУЧШЕЙ ВИДИМОСТИ УЗКИХ ПЛАТФОРМ
+            // ГџГђГЉГ€Г… ГЉГЋГЌГ’Г“ГђГ› Г„Г‹Гџ Г‹Г“Г—ГГ…Г‰ Г‚Г€Г„Г€ГЊГЋГ‘Г’Г€ Г“Г‡ГЉГ€Г• ГЏГ‹ГЂГ’Г”ГЋГђГЊ
             DrawRectangleLines(platform.x, platform.y, platform.width, platform.height, BLACK);
             DrawRectangleLines(platform.x + 1, platform.y + 1, platform.width - 2, platform.height - 2, WHITE);
             DrawRectangleLines(platform.x + 2, platform.y + 2, platform.width - 4, platform.height - 4, platform.color);
@@ -492,7 +492,7 @@ void PlayGame() {
         DrawText(TextFormat("Score: %d", score), 10, 10, 20, WHITE);
         DrawText(TextFormat("Player: %s", currentPlayer.c_str()), 10, 40, 20, WHITE);
 
-        // ?? ОТЛАДОЧНАЯ ИНФОРМАЦИЯ О РАЗМЕРАХ
+        // ?? ГЋГ’Г‹ГЂГ„ГЋГ—ГЌГЂГџ Г€ГЌГ”ГЋГђГЊГЂГ–Г€Гџ ГЋ ГђГЂГ‡ГЊГ…ГђГЂГ•
         DrawText(TextFormat("Platforms: %d", platforms.size()), 10, 70, 15, YELLOW);
         DrawText(TextFormat("Platform W: %.0f", platforms[1].width), 10, 90, 15, YELLOW);
         DrawText(TextFormat("Spacing: %.0f", PLATFORM_SPACING), 10, 110, 15, YELLOW);
@@ -523,7 +523,7 @@ void PlayGame() {
     }
 }
 
-// Главная функция
+// ГѓГ«Г ГўГ­Г Гї ГґГіГ­ГЄГ¶ГЁГї
 int main() {
     InitWindow(screenWidth, screenHeight, "Doodle Jump - Ultimate Edition");
     SetTargetFPS(60);
